@@ -1,5 +1,5 @@
 # ps-eat-cookies
-PeopleSoft servlet filter that prevents unwanted Cookies, like PS_TOKEN
+PeopleSoft servlet filter that prevents unwanted Cookies, like PS_TOKEN.
 
 # Setup
 1. Place the sdk directory in PS_CUST_HOME.
