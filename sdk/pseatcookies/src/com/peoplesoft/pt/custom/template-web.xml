@@ -1,4 +1,11 @@
 <!-- PSEatCookies - begin -->
+<!--------------------------
+  Add this to %PS_CFG_HOME%/webserv/[domain]/applications/peoplesoft/PORTAL.war/WEB-INF/web.xml
+  
+  The order you place the filter\filter-mapping entries is the order in which they are used in the filter chain. 
+  So, where you place it is up to you. To make it simple, go ahead and look for the very last </filter-mapping>. 
+  Place this example entry in after that and before <listener>.
+----------------------------->
 <filter>
 	<filter-name>PSEatCookies</filter-name>
 	<filter-class>com.peoplesoft.pt.custom.HCEatCookiesFilter</filter-class>
