@@ -9,9 +9,9 @@ PeopleSoft servlet filter that prevents unwanted Cookies, like PS_TOKEN.
  
 # Parameters
 Set these parameters with the filter setup in the web.xml file.
-## verbose
-- true - logging turned on
-- false - logging turned off
+## logFence
+- 0 - minimal details
+- 1 - all details
 
-## cookieToEat
-- The name of the unwanted Cookie. `PS_TOKEN`
+## cookiesToEat
+- Comma delimited list of unwanted Cookies. `PS_TOKEN,PS_TOKENEXPIRE`

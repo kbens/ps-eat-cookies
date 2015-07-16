@@ -1,21 +1,21 @@
 <!-- PSEatCookies - begin -->
-<!--------------------------
+<!--
   Add this to %PS_CFG_HOME%/webserv/[domain]/applications/peoplesoft/PORTAL.war/WEB-INF/web.xml
   
   The order you place the filter\filter-mapping entries is the order in which they are used in the filter chain. 
   So, where you place it is up to you. To make it simple, go ahead and look for the very last </filter-mapping>. 
   Place this example entry in after that and before <listener>.
------------------------------>
+-->
 <filter>
 	<filter-name>PSEatCookies</filter-name>
 	<filter-class>com.peoplesoft.pt.custom.PSEatCookiesFilter</filter-class>
 	<init-param>
-		<param-name>verbose</param-name>
-		<param-value>true</param-value>
+		<param-name>logFence</param-name>
+		<param-value>1</param-value>
 	</init-param>
 	<init-param>
-		<param-name>cookieToEat</param-name>
-		<param-value>PS_TOKEN</param-value>
+		<param-name>cookiesToEat</param-name>
+		<param-value>PS_TOKEN,PS_TOKENEXPIRE</param-value>
 	</init-param>
 </filter>
 <filter-mapping>

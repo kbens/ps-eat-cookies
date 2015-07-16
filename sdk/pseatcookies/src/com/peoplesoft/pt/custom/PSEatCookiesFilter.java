@@ -1,6 +1,9 @@
 package com.peoplesoft.pt.custom;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,15 +20,21 @@ import javax.servlet.http.HttpServletResponseWrapper;
  */
 public class PSEatCookiesFilter implements Filter {
 
-	private boolean verbose;
-	private String cookieToEat;
+	private int logFence;
+	private String cookiesToEat;
+	private List<String> cookiesToEatList;
 	
 	@Override
 	public void init(FilterConfig cfg) throws ServletException {		
-		verbose = Boolean.valueOf(cfg.getInitParameter("verbose"));
-		cookieToEat = String.valueOf(cfg.getInitParameter("cookieToEat"));
+		logFence = Integer.parseInt(cfg.getInitParameter("logFence"));
+		cookiesToEat = String.valueOf(cfg.getInitParameter("cookiesToEat"));
 		
-    	verbPrint("All '" + cookieToEat + "' cookies will be eaten.");
+		cookiesToEatList = Arrays.asList(cookiesToEat.split("\\s*,\\s*"));
+
+		log("Filter enabled", 0);
+    	for (String cookie : cookiesToEatList) {
+    		log("All '" + cookie + "' cookies will be eaten.", 0);
+		}
 	}
 
 	@Override
@@ -47,10 +56,10 @@ public class PSEatCookiesFilter implements Filter {
 	 *
 	 *  @param s - String to output
 	 */
-	private void verbPrint(String s) {
-		if (verbose) {
+	private void log(String print, Integer level ) {
+		if (logFence >= level) {
 			System.out.print("PSEatCookiesFilter: ");
-			System.out.println(s);
+			System.out.println(print);
 		}
 	}
 	
@@ -68,8 +77,8 @@ public class PSEatCookiesFilter implements Filter {
 		public void addCookie(Cookie cookie) {
 			String cookieName = cookie.getName();
 
-            if (cookieName.equalsIgnoreCase(cookieToEat)) 
-            	verbPrint(cookieName + " has been eaten.");
+            if (cookiesToEatList.contains(cookieName)) 
+            	log(cookieName + " has been eaten.", 1);
             else
                 super.addCookie(cookie);
         }		
