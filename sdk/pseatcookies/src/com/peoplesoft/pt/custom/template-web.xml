@@ -8,7 +8,7 @@
 ----------------------------->
 <filter>
 	<filter-name>PSEatCookies</filter-name>
-	<filter-class>com.peoplesoft.pt.custom.HCEatCookiesFilter</filter-class>
+	<filter-class>com.peoplesoft.pt.custom.PSEatCookiesFilter</filter-class>
 	<init-param>
 		<param-name>verbose</param-name>
 		<param-value>true</param-value>
